@@ -1,0 +1,82 @@
+{
+    "name": "Yacan's Blog",
+    "brandFont": {
+        "src": "https:\/\/image.manyacan.com\/font\/font_04.TTF",
+        "style": "normal",
+        "weight": "normal"
+    },
+    "desktopBannerHeight": 30,
+    "mobileBannerHeight": 30,
+    "headerMode": 1,
+    "headerModeMobile": 1,
+    "defaultFontSize": 2,
+    "useFiraCodeFont": false,
+    "parseFigcaption": true,
+    "showHeadlineInPost": true,
+    "twitterId": "Man Yacan",
+    "weiboId": "曼亚灿",
+    "commentFoldThreshold": [
+        5,
+        1.5
+    ],
+    "commentNotification": "<strong>⚠ FBI Warning:</strong> 1、邮箱用于收到后续回复，QQ邮箱可解析QQ头像；2、评论禁止人身攻击，禁止政治、宗教立场；3、禁止词汇：<code>http://</code>。",
+    "darkModeTime": {
+        "start": 20.0,
+        "end": 7.0
+    },
+    "followSystemColorScheme": true,
+    "largePhotoSet": true,
+    "bluredLazyload": true,
+    "CDNType": {
+        "static.imalan.cn": "QINIU"
+    },
+    "macStyleCodeBlock": true,
+    "lineNumbers": true,
+    "link": [
+        {
+            "name": "QQ",
+            "icon": "qq",
+            "href": "http:\/\/wpa.qq.com\/msgrd?v=3&uin=931941244&site=qq&menu=yes",
+            "target": "_blank"
+        },
+        {
+            "name": "wechat",
+            "icon": "wechat",
+            "href": "https:\/\/blog.manyacan.com\/readme.html",
+            "target": "_self"
+        },
+        {
+            "name": "Email",
+            "icon": "mail",
+            "href": "mailto:manyacan@qq.com",
+            "target": "_blank"
+        }
+    ],
+    "nav": [
+        {
+            "name": "🧭 导航",
+            "items": [
+                {
+                    "link": "https:\/\/www.manyacan.com\/",
+                    "title": "🏠 主页",
+                    "target": "_blank"
+                },
+                {
+                    "link": "https:\/\/space.bilibili.com\/92561951?spm_id_from=333.1007.0.0",
+                    "title": "📺 B站",
+                    "target": "_blank"
+                },
+                {
+                    "link": "https:\/\/www.manyacan.com\/time\/",
+                    "title": "⌚ 时间",
+                    "target": "_blank"
+                },
+                {
+                    "link": "https:\/\/manyacan.com\/mikutap\/",
+                    "title": "🐟 摸鱼",
+                    "target": "_blank"
+                }
+            ]
+        }
+    ]
+}
