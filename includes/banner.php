@@ -59,10 +59,11 @@ if ($this->is('post') || $this->is('page')) {
                         17: '淮南废弃游乐场摩天轮-1🎡',
                         18: '淮南废弃游乐场摩天轮-2🎡',
                         19: 'AUST西门~🎓',
-                        20: '安徽·金寨 天堂寨——是我去过空气最好的地方~'
+                        20: '安徽·金寨 天堂寨——是我去过空气最好的地方~',
+                        22: '革命尚未成功，同志仍需努力！'
                     },
-                    imgNum = 1 + ~~(Math.random() * 21);
-                // var imgNum = 14 + ~~(Math.random() * 6);  // 测试用
+                    imgNum = 1 + ~~(Math.random() * 25);
+                    // imgNum = 22 + ~~(Math.random() * 4);  // 测试用
                 if (imgInfo.hasOwnProperty(imgNum)) { // 判断是否需要输出信息
                     let span_ele = $('.lazy-wrap>#img-info');
                     span_ele.text('© ' + imgInfo[imgNum]);
@@ -99,8 +100,9 @@ if ($this->is('post') || $this->is('page')) {
                 main>.lazy-wrap {
                     min-height: 30vh !important;
                 }
+
                 .banner-title * {
-                    color: white!important
+                    color: white !important
                 }
             </style>
         <?php endif; ?>
