@@ -52,15 +52,16 @@ if ($this->is('post') || $this->is('page')) {
             </style>
             <script>
                 var imgInfo = {
-                    12: '歼20就问你帅不帅！🤠',
-                    14: '安徽理工大学脑瘫小分队~😆',
-                    15: 'NOKIA我曾经也爱过你的！🥹',
-                    16: '淮南——成就了AUST，然后又毁她。🏫',
-                    17: '淮南废弃游乐场摩天轮-1🎡',
-                    18: '淮南废弃游乐场摩天轮-2🎡',
-                    19: 'AUST西门~🎓'
-                },
-                    imgNum = 1 + ~~(Math.random() * 19);
+                        12: '歼20就问你帅不帅！🤠',
+                        14: '安徽理工大学脑瘫小分队~😆',
+                        15: 'NOKIA我曾经也爱过你的！🥹',
+                        16: '淮南——成就了AUST，然后又毁她。🏫',
+                        17: '淮南废弃游乐场摩天轮-1🎡',
+                        18: '淮南废弃游乐场摩天轮-2🎡',
+                        19: 'AUST西门~🎓',
+                        20: '安徽·金寨 天堂寨——是我去过空气最好的地方~'
+                    },
+                    imgNum = 1 + ~~(Math.random() * 21);
                 // var imgNum = 14 + ~~(Math.random() * 6);  // 测试用
                 if (imgInfo.hasOwnProperty(imgNum)) { // 判断是否需要输出信息
                     let span_ele = $('.lazy-wrap>#img-info');
@@ -74,19 +75,48 @@ if ($this->is('post') || $this->is('page')) {
             </script>
         <?php else : ?>
             <!-- 文章（post与独立页面）banner图为空 -->
-            <!-- 如果文章页（包括独立页面和post页面没有banner图）  -->
             <script>
                 $('body>header').addClass('force-dark').addClass('no-banner');
+                // 随机色
+                function randomColor() {
+                    const r = randomInt(255)
+                    const g = randomInt(255)
+                    const b = randomInt(255)
+                    const c = `#${r.toString(16)}${g.toString(16)}${b.toString(16)}000`
+                    return c.slice(0, 7)
+                }
+
+                function randomInt(max) {
+                    return Math.floor(Math.random() * max)
+                }
+
+                $('.lazy-wrap').css({
+                    'background-image': `linear-gradient(${randomInt(360)}deg, ${randomColor()} 0%, ${randomColor()} 100%)`,
+                    'opacity': 1
+                })
             </script>
             <style>
                 main>.lazy-wrap {
-                    min-height: 0;
+                    min-height: 30vh !important;
+                }
+                .banner-title * {
+                    color: white!important
                 }
             </style>
         <?php endif; ?>
     <?php endif; ?>
 
-    <?php if (!$this->is('index')) : ?>
+    <?php if ($this->is('index')) : ?>
+        <?php
+        $title = Helper::options()->title;
+        if ($setting['indexBannerTitle'] != '') $title = $setting['indexBannerTitle'];
+        $subtitle = Helper::options()->description;
+        if ($setting['indexBannerSubtitle'] != '') $subtitle = $setting['indexBannerSubtitle'];
+        ?>
+        <div class="banner-title index force-normal">
+            <h1 class="post-title"><span class="brand"><span><?php echo $title; ?></span></span><br><span class="subtitle"><?php echo $subtitle; ?></span></h1>
+        </div>
+    <?php else : ?>
         <div class="banner-title">
             <h1 class="post-title">
                 <?php if (!$this->is('archive')) : ?>
@@ -125,15 +155,11 @@ if ($this->is('post') || $this->is('page')) {
                 </p>
             <?php endif; ?>
         </div>
-    <?php elseif ($this->is('index')) : ?>
-        <?php
-        $title = Helper::options()->title;
-        if ($setting['indexBannerTitle'] != '') $title = $setting['indexBannerTitle'];
-        $subtitle = Helper::options()->description;
-        if ($setting['indexBannerSubtitle'] != '') $subtitle = $setting['indexBannerSubtitle'];
-        ?>
-        <div class="banner-title index force-normal">
-            <h1 class="post-title"><span class="brand"><span><?php echo $title; ?></span></span><br><span class="subtitle"><?php echo $subtitle; ?></span></h1>
-        </div>
+        <!-- 不管设置里面的$setting['desktopBannerHeight']为多少，文章页面的banner图高度永远为30% -->
+        <style>
+            main>.lazy-wrap {
+                min-height: 30vh !important;
+            }
+        </style>
     <?php endif; ?>
 </div>
