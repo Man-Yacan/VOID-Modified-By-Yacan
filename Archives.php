@@ -5,8 +5,8 @@
  *
  * @package custom
  *  
- * @author      熊猫小A
- * @version     2019-01-17 0.1
+ * @author      熊猫小A Modified By Yacan
+ * @version     2022-11-28 0.1
  * 
  */
 if (!defined('__TYPECHO_ROOT_DIR__'))
@@ -200,7 +200,7 @@ if (!Utils::isPjax()) {
             endforeach; ?>
         </section>
     </div>
-    
+
     <!-- 自定义代码必须放在PJax刷新区域 -->
     <!-- 自定义css -->
     <style>
@@ -209,7 +209,7 @@ if (!Utils::isPjax()) {
             width: fit-content;
             margin: 10px auto;
         }
-    
+
         #countdown-box>span {
             /* 转化span模式，使span能设置宽高 */
             display: inline-block;
@@ -222,12 +222,12 @@ if (!Utils::isPjax()) {
             text-align: center;
             line-height: 3em;
         }
-    
+
         #countdown-box strong {
             font-size: 150%;
             font-weight: 600;
         }
-    
+
         /* 博客大事记 */
         #blog-event ol {
             display: block;
@@ -235,28 +235,28 @@ if (!Utils::isPjax()) {
             list-style: none;
             margin: unset;
         }
-    
+
         #blog-event li {
             border-bottom: 1px solid;
         }
-    
+
         #blog-event li>span:first-child {
             font-size: 80%;
         }
-    
+
         /* 热门文章排行 */
         .popular-articles ol>li:first-child {
             color: #FE2D46;
         }
-    
+
         .popular-articles ol>li:nth-of-type(2) {
             color: #F60;
         }
-    
+
         .popular-articles ol>li:nth-of-type(3) {
             color: #FAA90E;
         }
-    
+
         .popular-articles ol>li.hot i::after {
             content: '热';
             color: #fafafa;
@@ -271,28 +271,28 @@ if (!Utils::isPjax()) {
             font-style: normal;
             font-size: 80%;
         }
-    
+
         .popular-articles ol>li.hot i {
             position: relative;
         }
-    
+
         /* 标签云 */
         .tag-cloud>a {
             border-radius: 5px;
             padding: 1px 5px;
             margin-right: 1px !important;
         }
-    
+
         .tag-cloud>a::after {
             content: '' !important;
         }
-    
+
         /* 时光杀猪刀 */
         #archive-list a::after {
             content: '';
         }
     </style>
-    
+
     <!-- 自定义JS -->
     <script>
         // 博客运行时间
@@ -304,12 +304,12 @@ if (!Utils::isPjax()) {
         var second = countdown_box.querySelector(".second");
         //获取截止时间的时间戳（单位毫秒）
         var inputTime = +new Date("2017-07-02 16:54:00");
-    
+
         //我们先调用countDown函数，可以避免在打开界面后停一秒后才开始倒计时
         countDown();
         //定时器 每隔一秒变化一次
         setInterval(countDown, 1000);
-    
+
         function countDown() {
             //获取当前时间的时间戳（单位毫秒）
             var nowTime = +new Date();

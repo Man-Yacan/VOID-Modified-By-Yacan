@@ -29,6 +29,232 @@ if (!Utils::isPjax()) {
     <!-- 输出Banner -->
     <?php $this->need('includes/banner.php'); ?>
 
+    <!-- 个人信息card Start -->
+    <style>
+        .card {
+            position: relative;
+            width: 350px;
+            height: 190px;
+            background: #333;
+            transition: 0.5s;
+            margin: 5rem auto 3rem;
+        }
+
+        .card:hover {
+            height: 450px;
+        }
+
+        .card .lines {
+            position: absolute;
+            inset: 0;
+            background: #000;
+            overflow: hidden;
+        }
+
+        .card .lines::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 600px;
+            height: 120px;
+            background: linear-gradient(transparent, #45f3ff, #45f3ff, #45f3ff, transparent);
+            animation: animate 4s linear infinite;
+        }
+
+        @keyframes animate {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+        }
+
+        .card .lines::after {
+            content: '';
+            position: absolute;
+            /* https://developer.mozilla.org/en-US/docs/Web/CSS/inset */
+            inset: 3px;
+            background: #292929;
+        }
+
+        .card:hover .imgBx {
+            width: 250px;
+            height: 250px;
+        }
+
+        .card .imgBx {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 150px;
+            background: #000;
+            transition: 0.5s;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .card .imgBx::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 500px;
+            height: 150px;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(transparent, #ff3c7b, #ff3c7b, #ff3c7b, transparent);
+            animation: animate2 6s linear infinite;
+        }
+
+        @keyframes animate2 {
+            0% {
+                transform: translate(-50%, -50%) rotate(360deg);
+            }
+
+            100% {
+                transform: translate(-50%, -50%) rotate(0deg);
+            }
+        }
+
+        .card .imgBx::after {
+            content: '';
+            position: absolute;
+            inset: 3px;
+            background: #292929;
+        }
+
+        .card .imgBx img {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 1;
+            width: calc(100% - 20px);
+            height: calc(100% - 20px);
+            /* filter: grayscale(1); */
+        }
+
+        .card .content {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            overflow: hidden;
+        }
+
+        .card .content .details {
+            padding: 40px;
+            text-align: center;
+            width: 100%;
+            transition: 0.5s;
+            transform: translateY(140px);
+        }
+
+        .card:hover .content .details {
+            transform: translateY(0px);
+        }
+
+        .card .content .details h2 {
+            font-size: 1.25em;
+            font-weight: 600;
+            color: #45f3ff;
+            line-height: 1.2em;
+            border-bottom: unset;
+        }
+
+        .card .content .details h2::before {
+            content: '';
+        }
+
+        .card .content .details h2 span {
+            font-size: 0.75em;
+            font-weight: 500;
+            opacity: 0.5;
+            color: #fff;
+        }
+
+        .card .content .details .data {
+            display: flex;
+            justify-content: space-between;
+            margin: 20px 0 !important;
+        }
+
+        .card .content .details .data h3 {
+            font-size: 1em;
+            color: #45f3ff;
+            line-height: 1.2em;
+            font-weight: 600;
+            margin: unset
+        }
+
+        .card .content .details .data h3 span {
+            font-size: 0.85em;
+            font-weight: 400;
+            opacity: 0.5;
+            color: #fff;
+        }
+
+        .card .content .details .actionBtn {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .card .content .details .actionBtn a {
+            padding: 10px 30px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            font-size: 1em;
+            font-weight: 500;
+            background: #45f3ff;
+            color: #222;
+            cursor: pointer;
+            opacity: 0.9;
+        }
+
+        .card .content .details .actionBtn a::after {
+            content: unset;
+        }
+
+        .card .content .details .actionBtn a:nth-child(2) {
+            /* border: 1px solid #999; */
+            /* color: #999; */
+            background: #fff;
+        }
+
+        .card .content .details .actionBtn a:hover {
+            opacity: 1;
+        }
+    </style>
+
+    <div class="card">
+        <div class="lines"></div>
+        <div class="imgBx">
+            <img src="https://image.manyacan.com/202211280901328.png#vwid=256&vhei=256" alt="">
+        </div>
+        <div class="content">
+            <div class="details">
+                <h2>曼亚灿<br><span>每天都在祈求平安毕业~</span></h2>
+                <div class="data">
+                    <h3><?php echo Utils::getPostNum(); ?><br><span>文章</span></h3>
+                    <h3><?php echo get_sum_view_num(); ?><br><span>阅读</span></h3>
+                    <h3><?php echo get_user_level(); ?><br><span>评论</span></h3>
+                </div>
+                <div class="actionBtn">
+                    <a href="https://blog.manyacan.com/readme.html">关于</a>
+                    <a href="http://wpa.qq.com/msgrd?v=3&uin=931941244&site=qq&menu=yes">QQ</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 个人信息card End -->
+
+
     <div class="wrapper container">
         <!-- 输出页面 Markdown -->
         <?php $this->content(); ?>
@@ -91,7 +317,7 @@ if (!Utils::isPjax()) {
             <!--历史评论-->
             <h3 class="comment-separator">
                 <div class="comment-tab-current">
-                    <div style="margin: 20px auto;width: fit-content;">--------------- <span style="color: white;background-color: black;padding: 0 5px;font-size: .7rem;"><?php $this->commentsNum('开始第一条说说吧~', '已有 1 条说说', '已有矫情了 <span class="num">%d</span> 次🤪'); ?></span> ---------------</div>
+                    <div style="margin: 20px auto;width: fit-content;">--------------- <span style="color: white;background-color: black;padding: 0 5px;font-size: .7rem;"><?php $this->commentsNum('开始第一条说说吧~', '已有 1 条说说', '已经矫情了 <span class="num">%d</span> 次🤪'); ?></span> ---------------</div>
                 </div>
             </h3>
             <?php if ($comments->have()) : ?>

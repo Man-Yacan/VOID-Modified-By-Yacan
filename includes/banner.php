@@ -63,7 +63,7 @@ if ($this->is('post') || $this->is('page')) {
                         22: '革命尚未成功，同志仍需努力！'
                     },
                     imgNum = 1 + ~~(Math.random() * 25);
-                    // imgNum = 22 + ~~(Math.random() * 4);  // 测试用
+                // imgNum = 22 + ~~(Math.random() * 4);  // 测试用
                 if (imgInfo.hasOwnProperty(imgNum)) { // 判断是否需要输出信息
                     let span_ele = $('.lazy-wrap>#img-info');
                     span_ele.text('© ' + imgInfo[imgNum]);
@@ -91,18 +91,32 @@ if ($this->is('post') || $this->is('page')) {
                     return Math.floor(Math.random() * max)
                 }
 
-                $('.lazy-wrap').css({
-                    'background-image': `linear-gradient(${randomInt(360)}deg, ${randomColor()} 0%, ${randomColor()} 100%)`,
-                    'opacity': 1
-                })
+                $('.lazy-wrap').css('background', `linear-gradient(${randomInt(360)}deg,${randomColor()},${randomColor()},${randomColor()},${randomColor()},${randomColor()})`)
             </script>
             <style>
                 main>.lazy-wrap {
                     min-height: 30vh !important;
+                    animation: bgAnimation 15s linear infinite;
+                    background-size: 500% !important;
+                    opacity: 1
                 }
 
                 .banner-title * {
                     color: white !important
+                }
+
+                @keyframes bgAnimation {
+                    0% {
+                        background-position: 0% 50%;
+                    }
+
+                    50% {
+                        background-position: 100% 50%;
+                    }
+
+                    100% {
+                        background-position: 0% 50%;
+                    }
                 }
             </style>
         <?php endif; ?>
