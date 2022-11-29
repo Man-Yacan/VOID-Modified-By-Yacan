@@ -57,10 +57,10 @@ if (!Utils::isPjax()) {
                 <div class="cancel-comment-reply" role=button>
                     <?php $comments->cancelReply(); ?>
                 </div>
-                <h3 id="response" class="widget-title text-left">发表个说说吧~</h3>
+                <h3 id="response" class="widget-title text-left">发表个说说吧~☺️🙂😆😄🤠</h3>
                 <form method="post" action="<?php $this->commentUrl() ?>" id="comment-form">
                     <p style="margin-top:0">
-                        <textarea aria-label="评论输入框" style="resize:none;" class="input-area" rows="5" name="text" id="textarea" placeholder="在这里输入你的评论..." onkeydown="if(event.ctrlKey&&event.keyCode==13){document.getElementById('comment-submit-button').click();return false};"><?php $this->remember('text'); ?></textarea>
+                        <textarea aria-label="评论输入框" style="resize:none;" class="input-area" rows="5" name="text" id="textarea" placeholder="在这里输入你的说说..." onkeydown="if(event.ctrlKey&&event.keyCode==13){document.getElementById('comment-submit-button').click();return false};"><?php $this->remember('text'); ?></textarea>
                     </p>
                     <p class="comment-buttons">
                         <span class="OwO" aria-label="表情按钮" role="button"></span>
@@ -82,11 +82,16 @@ if (!Utils::isPjax()) {
                 </style>
             <?php endif; ?>
 
+            <style>
+                .user-logo.webmaster {
+                    display: none
+                }
+            </style>
 
             <!--历史评论-->
             <h3 class="comment-separator">
                 <div class="comment-tab-current">
-                    <div style="margin: 20px auto;width: fit-content;">--------------- <span style="color: white;background-color: black;padding: 0 5px;font-size: .7rem;"><?php $this->commentsNum('开始第一条说说吧~', '已有 1 条说说', '已有 <span class="num">%d</span> 条说说'); ?></span> ---------------</div>
+                    <div style="margin: 20px auto;width: fit-content;">--------------- <span style="color: white;background-color: black;padding: 0 5px;font-size: .7rem;"><?php $this->commentsNum('开始第一条说说吧~', '已有 1 条说说', '已有矫情了 <span class="num">%d</span> 次🤪'); ?></span> ---------------</div>
                 </div>
             </h3>
             <?php if ($comments->have()) : ?>
