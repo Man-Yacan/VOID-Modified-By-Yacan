@@ -34,7 +34,8 @@ if ($this->is('post') || $this->is('page')) {
 
     <!-- 如果banner图为空 -->
     <?php if (empty($banner)) : ?>
-        <?php if ($this->is('index')) : ?>
+        <!-- 是首页并且第一个首页才会显示Banner图 -->
+        <?php if ($this->is('index') && ($this->currentPage == 1 || $this->_currentPage == 1)) : ?>
             <!-- 首页banner图为空：没有填写随机图API或者固定头图地址时，产生一个随机图地址并伴随一条图片信息 -->
             <span id="img-info"></span>
             <style>

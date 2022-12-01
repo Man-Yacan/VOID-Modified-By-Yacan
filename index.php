@@ -32,6 +32,8 @@ if (!Utils::isPjax()) {
                                         echo 'narrow';
                                     else
                                         echo 'wide'; ?>">
+
+        <!-- 输出矫情 Start -->
         <?php if ($this->currentPage == 1 || $this->_currentPage == 1) : ?>
             <?php $this->widget('Widget_Comments_Recent', 'pageSize=1&parentId=1734')->to($comments); ?>
             <!--pageSiz获取的评论条数，parentId=cid；&ignoreAuthor=true忽略文章作者评论-->
@@ -49,7 +51,8 @@ if (!Utils::isPjax()) {
                 </div>
             </a>
         <?php endif; ?>
-        <!-- 结束 - 输出矫情页面最新评论 -->
+        <!-- 输出矫情 End -->
+        
         <section id="index-list" class="float-up">
             <ul id="masonry">
                 <?php while ($this->next()) : ?>
