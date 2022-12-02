@@ -34,9 +34,70 @@ if ($this->is('post') || $this->is('page')) {
 
     <!-- 如果banner图为空 -->
     <?php if (empty($banner)) : ?>
-        <!-- 是首页并且第一个首页才会显示Banner图 -->
+        <!-- 首页banner图为空：没有填写随机图API或者固定头图地址时，产生一个随机图地址并伴随一条图片信息 -->
         <?php if ($this->is('index') && ($this->currentPage == 1 || $this->_currentPage == 1)) : ?>
-            <!-- 首页banner图为空：没有填写随机图API或者固定头图地址时，产生一个随机图地址并伴随一条图片信息 -->
+            <!-- PC端的时候banner图为全屏，添加一个 -->
+            <?php if (!Utils::isMobile()) : ?>
+                <div id="down-button" onclick="VOID_SmoothScroller.scrollTo('#whisper', -60)">
+                    <div class="arrow"></div>
+                    <div class="arrow"></div>
+                    <div class="arrow"></div>
+                </div>
+                <style>
+                    .lazy-wrap>#down-button {
+                        width: 100px;
+                        position: absolute;
+                        bottom: 1.5rem;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        cursor: pointer;
+                        z-index: 2;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    .arrow {
+                        position: relative;
+                        width: 60px;
+                        height: 60px;
+                        border-top: 10px solid #fff;
+                        border-left: 10px solid #fff;
+                        transform: rotate(-135deg);
+                        animation: arrow-load 2s infinite;
+                    }
+
+                    .arrow:nth-child(1) {
+                        top: 25px;
+                        animation-delay: -0.4s
+                    }
+
+                    .arrow:nth-child(2) {
+                        animation-delay: -0.2s
+                    }
+
+                    .arrow:nth-child(3) {
+                        bottom: 25px;
+                    }
+
+                    @keyframes arrow-load {
+                        0% {
+                            opacity: 0;
+                            transform: rotate(-135deg) translate(50px, 50px);
+                        }
+
+                        50% {
+                            opacity: 1;
+                        }
+
+                        100% {
+                            opacity: 0;
+                        }
+                    }
+                </style>
+            <?php endif; ?>
+
             <span id="img-info"></span>
             <style>
                 .lazy-wrap>#img-info {
@@ -61,10 +122,17 @@ if ($this->is('post') || $this->is('page')) {
                         18: '淮南废弃游乐场摩天轮-2🎡',
                         19: 'AUST西门~🎓',
                         20: '安徽·金寨 天堂寨——是我去过空气最好的地方~',
-                        22: '革命尚未成功，同志仍需努力！'
+                        22: '革命尚未成功，同志仍需努力！',
+                        26: '很多年前诺记吧吧友拍摄的美图~',
+                        28: '很多年前诺记吧吧友拍摄的美图~',
+                        29: '很多年前诺记吧吧友拍摄的美图~',
+                        30: '很多年前诺记吧吧友拍摄的美图~',
+                        32: 'Microsoft Surface Pro 4',
+                        33: 'Microsoft Surface Book',
+                        36: '很多年前诺记吧吧友拍摄的美图~'
                     },
-                    imgNum = 1 + ~~(Math.random() * 25);
-                // imgNum = 22 + ~~(Math.random() * 4);  // 测试用
+                    imgNum = 1 + ~~(Math.random() * 36);
+                // imgNum = 25 + ~~(Math.random() * 11);  // 测试用
                 if (imgInfo.hasOwnProperty(imgNum)) { // 判断是否需要输出信息
                     let span_ele = $('.lazy-wrap>#img-info');
                     span_ele.text('© ' + imgInfo[imgNum]);

@@ -68,7 +68,7 @@ $this->widget('VOID_Widget_Comments_Archive', $parameter)->to($comments);
         <!--历史评论-->
         <h3 class="comment-separator">
             <div class="comment-tab-current">
-                <div style="margin: 20px auto;width: fit-content;">--------------- <span style="color: white;background-color: black;padding: 0 5px;font-size: .7rem;"><?php $this->commentsNum('开始第一条评论吧~', '已有 1 条评论', '已有 <span class="num">%d</span> 条评论'); ?></span> ---------------</div>
+                <div style="margin: 20px auto;width: fit-content;">--------------- <span style="color: white;background-color: black;padding: 0 5px;font-size: .7rem;"><?php $this->commentsNum('此处无声胜有声~', '已有 1 条评论', '已有 <span class="num">%d</span> 条评论'); ?></span> ---------------</div>
             </div>
         </h3>
         <?php if ($comments->have()) : ?>
