@@ -24,8 +24,13 @@ if (!Utils::isPjax()) {
         <?php Contents::title($this); ?>
     </title>
 
-    <?php $this->need('includes/ldjson.php'); ?>
-    <?php $this->need('includes/banner.php'); ?>
+    <?php
+    $this->need('includes/ldjson.php');
+    $this->need('includes/banner.php');
+    //引入加密文件并设置密码
+    require_once('MkEncrypt.php');
+    MkEncrypt('manyacan', 'Resume');
+    ?>
 
     <div class="wrapper container">
         <div class="contents-wrap">

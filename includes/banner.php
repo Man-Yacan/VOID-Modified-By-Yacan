@@ -37,67 +37,11 @@ if ($this->is('post') || $this->is('page')) {
         <!-- 首页banner图为空：没有填写随机图API或者固定头图地址时，产生一个随机图地址并伴随一条图片信息 -->
         <?php if ($this->is('index') && ($this->currentPage == 1 || $this->_currentPage == 1)) : ?>
             <!-- PC端的时候banner图为全屏，添加一个 -->
-            <?php if (!Utils::isMobile()) : ?>
-                <div id="down-button" onclick="VOID_SmoothScroller.scrollTo('#whisper', -60)">
-                    <div class="arrow"></div>
-                    <div class="arrow"></div>
-                    <div class="arrow"></div>
-                </div>
-                <style>
-                    .lazy-wrap>#down-button {
-                        width: 100px;
-                        position: absolute;
-                        bottom: 1.5rem;
-                        left: 50%;
-                        transform: translateX(-50%);
-                        cursor: pointer;
-                        z-index: 2;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                    }
-
-                    .arrow {
-                        position: relative;
-                        width: 60px;
-                        height: 60px;
-                        border-top: 10px solid #fff;
-                        border-left: 10px solid #fff;
-                        transform: rotate(-135deg);
-                        animation: arrow-load 2s infinite;
-                    }
-
-                    .arrow:nth-child(1) {
-                        top: 25px;
-                        animation-delay: -0.4s
-                    }
-
-                    .arrow:nth-child(2) {
-                        animation-delay: -0.2s
-                    }
-
-                    .arrow:nth-child(3) {
-                        bottom: 25px;
-                    }
-
-                    @keyframes arrow-load {
-                        0% {
-                            opacity: 0;
-                            transform: rotate(-135deg) translate(50px, 50px);
-                        }
-
-                        50% {
-                            opacity: 1;
-                        }
-
-                        100% {
-                            opacity: 0;
-                        }
-                    }
-                </style>
-            <?php endif; ?>
-
+            <div id="down-button" onclick="VOID_SmoothScroller.scrollTo('#whisper', -60)">
+                <div class="arrow"></div>
+                <div class="arrow"></div>
+                <div class="arrow"></div>
+            </div>
             <span id="img-info"></span>
             <style>
                 .lazy-wrap>#img-info {

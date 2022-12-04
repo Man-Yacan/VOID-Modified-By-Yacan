@@ -192,7 +192,8 @@ $setting = $GLOBALS['VOIDSetting'];
                 if (this.value === "") {
                     VOID.alert("请输入内容后再按回车键！");
                 } else {
-                    window.location.href = "https://blog.manyacan.com/search/" + this.value;
+                    // window.location.href = "https://blog.manyacan.com/search/" + this.value;
+                    window.location.href = 'https://www.baidu.com/s?ie=utf-8&wd=' + this.value + '+site%3Ablog.manyacan.com';
                     VOID.alert("进行搜索重定向...");
                 }
             }

@@ -72,12 +72,19 @@ if (!Utils::isPjax()) {
             <!-- 如果没登陆，那么就把评论框隐藏，禁止非博主在这个页面评论 -->
             <?php if (!$this->user->hasLogin()) : ?>
                 <style>
-                    .respond {
-                        display: none
+                    .respond,
+                    .comment-reply,
+                    .comment-avatar.star {
+                        display: none !important
                     }
 
-                    .comment-reply {
-                        display: none
+                    .comment-meta {
+                        margin-left: unset !important
+                    }
+
+                    .comment-content.yue {
+                        max-width: 100% !important;
+                        margin-left: unset !important
                     }
                 </style>
             <?php endif; ?>
