@@ -444,7 +444,7 @@ function convertip($ip)
 }
 
 
-// 获得读者墙
+// 读者墙——最多评论
 function getFriendWall()
 {
     $db = Typecho_Db::get();
@@ -456,16 +456,48 @@ function getFriendWall()
         ->where('mail != ?', 'myxc@live.cn')   //排除自己上墙
         ->group('mail')
         ->order('cnt', Typecho_Db::SORT_DESC)
-        ->limit('32');    //读取几位用户的信息
+        ->limit('12');    //读取几位用户的信息
     $result = $db->fetchAll($sql);
 
-    if (count($result) > 0) {
+    if ($result) {
         $maxNum = $result[0]['cnt'];
         foreach ($result as $value) {
             if (!$value['url']) {
-                $value['url'] = 'href="mailto:' . $value['mail'] . '"';
+                $value['url'] = 'mailto:' . $value['mail'];
             }
             $mostactive .= '<li><a target="_blank" rel="nofollow" href="' . $value['url'] . '"><img src="https://cravatar.cn/avatar/' . md5(strtolower($value['mail'])) . '?s=36&d=&r=G"><em>' . $value['author'] . '</em><strong>+' . $value['cnt'] . '</strong></a></li>';
+        }
+        echo $mostactive;
+    }
+}
+
+// 读者墙——最近评论
+function getRecentVisitors($limit = 12)
+{
+    $db = Typecho_Db::get();
+    $sql = $db->select()->from('table.comments')
+        ->group('mail')
+        ->where('status = ?', 'approved')
+        ->where('mail != ?', 'myxc@live.cn')   //排除自己上墙
+        ->limit($limit)
+        ->order('created', Typecho_Db::SORT_DESC);
+    $result = $db->fetchAll($sql);
+
+    if ($result) {
+        foreach ($result as $value) {
+            if (!$value['url']) {
+                $value['url'] = 'mailto:' . $value['mail'];
+            }
+
+            $count = $db->fetchRow(
+                $db->select('COUNT(*)')
+                    ->from('table.comments')
+                    ->where('status = ?', 'approved')
+                    ->where('mail = ?', $value['mail'])
+            );
+            $commentnum = $count['COUNT(*)'];
+
+            $mostactive .= '<li><a target="_blank" rel="nofollow" href="' . $value['url'] . '"><img src="https://cravatar.cn/avatar/' . md5(strtolower($value['mail'])) . '?s=36&d=&r=G"><em>' . $value['author'] . '</em><strong>+' . $commentnum . '</strong></a></li>';
         }
         echo $mostactive;
     }

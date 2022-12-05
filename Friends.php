@@ -35,28 +35,33 @@ if (!Utils::isPjax()) {
             <section id="post" class="float-up">
                 <article class="post yue">
                     <div class="articleBody resume-table" class="full">
-                        <h2>网上邻居</h2>
+
                         <!-- 输出页面 Markdown -->
                         <?php $this->content(); ?>
                         <!-- 输出页面 Markdown End -->
 
-                        <hr>
                         <!-- 读者墙 -->
                         <h2>读者墙</h2>
                         <p class="notice">留言不积极，思想有问题~☺️</p>
                         <div id="reader-wall">
+                            <h3>最近来的</h3>
+                            <ul class='readers-list'>
+                                <?php getRecentVisitors(); ?>
+                            </ul>
+                            <h3>最常来的</h3>
                             <ul class='readers-list'>
                                 <?php getFriendWall(); ?>
                             </ul>
                         </div>
+                        <!-- 读者墙 End -->
+
                     </div>
                 </article>
             </section>
         </div>
     </div>
+
     <!-- css样式 -->
-
-
     <style>
         #reader-wall>.readers-list {
             padding: unset;
@@ -94,8 +99,8 @@ if (!Utils::isPjax()) {
             box-shadow: 8px 8px 5px rgb(0 0 0 / 38%)
         }
 
-        #reader-wall .readers-list a img,
-        strong {
+        #reader-wall img,
+        #reader-wall strong {
             position: absolute;
             top: 50%;
             transform: translateY(-50%);
@@ -172,11 +177,9 @@ if (!Utils::isPjax()) {
         }
     </style>
 
-
     <!--评论区，可选（只有当允许评论的时候才输出评论区）-->
     <?php $this->need('includes/comments.php'); ?>
 </main>
-
 
 <!-- footer -->
 <?php
