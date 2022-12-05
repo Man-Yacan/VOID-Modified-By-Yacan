@@ -442,3 +442,31 @@ function convertip($ip)
     $ipaddr = iconv('gbk', 'utf-8//IGNORE', $ipaddr);
     return $ipaddr;
 }
+
+
+// 获得读者墙
+function getFriendWall()
+{
+    $db = Typecho_Db::get();
+    $sql = $db->select('COUNT(author) AS cnt', 'author', 'url', 'mail')
+        ->from('table.comments')
+        ->where('status = ?', 'approved')
+        ->where('type = ?', 'comment')
+        ->where('authorId = ?', '0')
+        ->where('mail != ?', 'myxc@live.cn')   //排除自己上墙
+        ->group('mail')
+        ->order('cnt', Typecho_Db::SORT_DESC)
+        ->limit('32');    //读取几位用户的信息
+    $result = $db->fetchAll($sql);
+
+    if (count($result) > 0) {
+        $maxNum = $result[0]['cnt'];
+        foreach ($result as $value) {
+            if (!$value['url']) {
+                $value['url'] = 'href="mailto:' . $value['mail'] . '"';
+            }
+            $mostactive .= '<li><a target="_blank" rel="nofollow" href="' . $value['url'] . '"><img src="https://cravatar.cn/avatar/' . md5(strtolower($value['mail'])) . '?s=36&d=&r=G"><em>' . $value['author'] . '</em><strong>+' . $value['cnt'] . '</strong></a></li>';
+        }
+        echo $mostactive;
+    }
+}

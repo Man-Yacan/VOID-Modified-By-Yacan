@@ -125,44 +125,44 @@ $setting = $GLOBALS['VOIDSetting'];
                                             $next = Contents::theNext($this); ?>
                         <div class="prev">
                             <?php if ($prev) : ?>
-                                    <a href="<?php $prev->permalink(); ?>">
-                                        <h2><?php $prev->title(); ?></h2>
-                                    </a>
-                                    <!-- 如果有摘要就输出摘要，没有摘要输出一段文字 -->
-                                    <?php
-                                    if ($prev->fields->excerpt != '') {
-                                        echo "<p>{$prev->fields->excerpt}</p>";
-                                    } else {
-                                        // 移动端少输出一点字
-                                        if (Utils::isMobile())
-                                            $prev->excerpt(60);
-                                        else
-                                            $prev->excerpt(80);
-                                    }
-                                    ?>
+                                <a href="<?php $prev->permalink(); ?>">
+                                    <h2><?php $prev->title(); ?></h2>
+                                </a>
+                                <!-- 如果有摘要就输出摘要，没有摘要输出一段文字 -->
+                                <?php
+                                if ($prev->fields->excerpt != '') {
+                                    echo "<p>{$prev->fields->excerpt}</p>";
+                                } else {
+                                    // 移动端少输出一点字
+                                    if (Utils::isMobile())
+                                        $prev->excerpt(60);
+                                    else
+                                        $prev->excerpt(80);
+                                }
+                                ?>
                             <?php else : ?>
-                                    <h2>考古结束~</h2>
+                                <h2>考古结束~</h2>
                             <?php endif; ?>
                         </div>
                         <div class="next">
                             <?php if ($next) : ?>
-                                    <a href="<?php $next->permalink(); ?>">
-                                        <h2><?php $next->title(); ?></h2>
-                                    </a>
-                                    <?php /* echo $next->fields->excerpt != '' ? "<p>{$next->fields->excerpt}</p>" : ''; */ ?>
-                                    <?php
-                                    if ($next->fields->excerpt != '') {
-                                        echo "<p>{$next->fields->excerpt}</p>";
-                                    } else {
-                                        // 移动端少输出一点字
-                                        if (Utils::isMobile())
-                                            $next->excerpt(60);
-                                        else
-                                            $next->excerpt(80);
-                                    }
-                                    ?>
+                                <a href="<?php $next->permalink(); ?>">
+                                    <h2><?php $next->title(); ?></h2>
+                                </a>
+                                <?php /* echo $next->fields->excerpt != '' ? "<p>{$next->fields->excerpt}</p>" : ''; */ ?>
+                                <?php
+                                if ($next->fields->excerpt != '') {
+                                    echo "<p>{$next->fields->excerpt}</p>";
+                                } else {
+                                    // 移动端少输出一点字
+                                    if (Utils::isMobile())
+                                        $next->excerpt(60);
+                                    else
+                                        $next->excerpt(80);
+                                }
+                                ?>
                             <?php else : ?>
-                                    <h2>鸽了鸽了~</h2>
+                                <h2>鸽了鸽了~</h2>
                             <?php endif; ?>
                         </div>
                     </div>
@@ -182,8 +182,7 @@ $setting = $GLOBALS['VOIDSetting'];
         <?php endif; ?>
     </div>
 
-    <!--评论区，可选-->
-    <!-- 只有当允许评论的时候才输出评论区 -->
+    <!--评论区，可选（只有当允许评论的时候才输出评论区）-->
     <?php if ($this->allow('comment')) : ?>
         <?php $this->need('includes/comments.php'); ?>
     <?php endif; ?>
