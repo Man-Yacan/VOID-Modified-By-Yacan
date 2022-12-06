@@ -452,8 +452,8 @@ function getMostVisitors($limit = 12, $masterEmail = 'myxc@live.cn')
     $db = Typecho_Db::get();
     $sql = $db->select('COUNT(author) AS cnt', 'author', 'url', 'mail')
         ->from('table.comments')
-        ->where('status = ?', 'approved')
-        ->where('type = ?', 'comment')
+        // ->where('status = ?', 'approved')
+        // ->where('type = ?', 'comment')
         ->where('mail != ?', $masterEmail)   //排除自己上墙
         ->group('mail')
         ->order('cnt', Typecho_Db::SORT_DESC)
@@ -479,7 +479,6 @@ function getRecentVisitors($limit = 12, $masterEmail = 'myxc@live.cn')
     $db = Typecho_Db::get();
     $sql = $db->select()->from('table.comments')
         ->group('mail')
-        ->where('status = ?', 'approved')
         ->where('mail != ?', $masterEmail)   //排除自己上墙
         ->limit($limit)
         ->order('created', Typecho_Db::SORT_DESC);
