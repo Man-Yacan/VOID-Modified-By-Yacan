@@ -50,7 +50,7 @@ if (!Utils::isPjax()) {
                             </ul>
                             <h3>最常来的</h3>
                             <ul class='readers-list'>
-                                <?php getFriendWall(); ?>
+                                <?php getMostVisitors(); ?>
                             </ul>
                         </div>
                         <!-- 读者墙 End -->

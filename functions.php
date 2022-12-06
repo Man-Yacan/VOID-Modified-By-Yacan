@@ -445,18 +445,17 @@ function convertip($ip)
 
 
 // 读者墙——最多评论
-function getFriendWall()
+function getMostVisitors($limit = 12, $masterEmail = 'myxc@live.cn')
 {
     $db = Typecho_Db::get();
     $sql = $db->select('COUNT(author) AS cnt', 'author', 'url', 'mail')
         ->from('table.comments')
         ->where('status = ?', 'approved')
         ->where('type = ?', 'comment')
-        ->where('authorId = ?', '0')
-        ->where('mail != ?', 'myxc@live.cn')   //排除自己上墙
+        ->where('mail != ?', $masterEmail)   //排除自己上墙
         ->group('mail')
         ->order('cnt', Typecho_Db::SORT_DESC)
-        ->limit('12');    //读取几位用户的信息
+        ->limit($limit);    //读取几位用户的信息
     $result = $db->fetchAll($sql);
 
     if ($result) {
@@ -472,13 +471,13 @@ function getFriendWall()
 }
 
 // 读者墙——最近评论
-function getRecentVisitors($limit = 12)
+function getMostVisitors($limit = 12, $masterEmail = 'myxc@live.cn')
 {
     $db = Typecho_Db::get();
     $sql = $db->select()->from('table.comments')
         ->group('mail')
         ->where('status = ?', 'approved')
-        ->where('mail != ?', 'myxc@live.cn')   //排除自己上墙
+        ->where('mail != ?', $masterEmail)   //排除自己上墙
         ->limit($limit)
         ->order('created', Typecho_Db::SORT_DESC);
     $result = $db->fetchAll($sql);
