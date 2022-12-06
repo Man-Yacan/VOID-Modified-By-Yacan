@@ -140,17 +140,17 @@ function getBrowser($agent)
     } else if (preg_match('/QQ/i', $agent, $regs) || preg_match('/QQBrowser\/([^\s]+)/i', $agent, $regs)) {
         $str1 = explode('rowser/', $agent);
         $QQ_vern = explode('.', $str1[1]);
-        $outputer .= '<i class= "ua-icon icon-qq"></i><span>&nbsp;&nbsp;QQ浏览器';
+        $outputer .= 'qq"></i><span>&nbsp;&nbsp;QQ浏览器';
     } else if (preg_match('/UBrowser/i', $agent, $regs)) {
         $str1 = explode('rowser/', $agent);
         $UCBrowser_vern = explode('.', $str1[1]);
         $outputer .= 'uc"></i><span>&nbsp;&nbsp;UC浏览器';
     } else if (preg_match('/Opera[\s|\/]([^\s]+)/i', $agent, $regs)) {
-        $outputer .= '<i class= "ua-icon icon-opera"></i><span>&nbsp;&nbsp;Opera';
+        $outputer .= 'opera"></i><span>&nbsp;&nbsp;Opera';
     } else if (preg_match('/Chrome([\d]*)\/([^\s]+)/i', $agent, $regs)) {
         $str1 = explode('Chrome/', $agent);
         $chrome_vern = explode('.', $str1[1]);
-        $outputer .= 'chrome""></i><span>&nbsp;&nbsp;Google Chrome';
+        $outputer .= 'chrome"></i><span>&nbsp;&nbsp;Google Chrome';
     } else if (preg_match('/safari\/([^\s]+)/i', $agent, $regs)) {
         $str1 = explode('Version/', $agent);
         $safari_vern = explode('.', $str1[1]);
@@ -274,6 +274,7 @@ function local_random_avatar()
     echo $thumb;
 }
 
+
 // 输出博客用户评论总数，输入邮箱在数据库中进行查询
 function get_user_level($mail = '')
 {
@@ -306,6 +307,7 @@ function get_user_level($mail = '')
         return $count['COUNT(*)'];
     }
 }
+
 
 // 输入IP将其转化为物理地理信息，需要配合根目录qqwry.dat文件使用
 function convertip($ip)
@@ -470,8 +472,9 @@ function getMostVisitors($limit = 12, $masterEmail = 'myxc@live.cn')
     }
 }
 
+
 // 读者墙——最近评论
-function getMostVisitors($limit = 12, $masterEmail = 'myxc@live.cn')
+function getRecentVisitors($limit = 12, $masterEmail = 'myxc@live.cn')
 {
     $db = Typecho_Db::get();
     $sql = $db->select()->from('table.comments')
