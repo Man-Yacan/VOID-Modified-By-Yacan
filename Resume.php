@@ -29,7 +29,7 @@ if (!Utils::isPjax()) {
     $this->need('includes/banner.php');
     //引入加密文件并设置密码
     require_once('MkEncrypt.php');
-    MkEncrypt('manyacan', 'Resume');
+    MkEncrypt('', 'Resume');
     ?>
 
     <div class="wrapper container">
