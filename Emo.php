@@ -25,15 +25,10 @@ if (!Utils::isPjax()) {
         <?php Contents::title($this); ?>
     </title>
 
-    <?php $this->need('includes/ldjson.php'); ?>
-    <!-- 输出Banner -->
-    <?php $this->need('includes/banner.php'); ?>
-
-    <div class="wrapper container">
-        <!-- 输出页面 Markdown -->
-        <?php $this->content(); ?>
-        <!-- 输出页面 Markdown End -->
-    </div>
+    <?php
+    $this->need('includes/ldjson.php');
+    $this->need('includes/banner.php');
+    ?>
 
     <!-- 评论区 -->
     <?php
