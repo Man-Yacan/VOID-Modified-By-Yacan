@@ -89,50 +89,6 @@ if (!Utils::isPjax()) {
                 <?php echo get_last_update(); ?>
             </p>
         </div>
-        <!-- 博客大事记 - 开始 -->
-        <div class="yue float-up" id="blog-event">
-            <h2>🎞 博客大事记</h2>
-            <ol>
-                <li>
-                    <span>2022年09月10日（中秋节、教师节）</span><br>
-                    <span>网站被黑，重装服务器并增强了网站前后端防护机制，<a href="https://blog.manyacan.com/archives/1961/">中秋节网站重新上线</a>。</span>
-                </li>
-                <li>
-                    <span>2020年09月</span><br>
-                    <span>开始读研，博客进入稳定期，记录生活，分享知识。</span>
-                </li>
-                <li>
-                    <span>2020年04月20日</span><br>
-                    <span>网站服务器变更为杭州阿里云，<a href="https://manyacan.com">manyacan.com</a>第二次通过河南管局备案。</span>
-                </li>
-                <li>
-                    <span>2019年03月</span><br>
-                    <span>开始准备考研，博客进入荒废期。</span>
-                </li>
-                <li>
-                    <span>2018年12月22日</span><br>
-                    <span><a href="https://blog.manyacan.com/archives/904/">SolidWorks_ 2018_SP5.0_完整集成版
-                            安装</a>本站第一篇阅读过万、阅读过百的文章。</span>
-                </li>
-                <li>
-                    <span>2018年07月11日</span><br>
-                    <span><a href="https://manyacan.com">manyacan.com</a>首次通过河南管局备案。</span>
-                </li>
-                <li>
-                    <span>2017年12月27日</span><br>
-                    <span>购买个人拼音域名<a href="https://manyacan.com">manyacan.com</a>。</span>
-                </li>
-                <li>
-                    <span>2017年09月</span><br>
-                    <span>建立第一个网站，基于WordPress程序、腾讯云服务器，域名：reboy.club（已弃用）。</span>
-                </li>
-                <li>
-                    <span>2017年07月</span><br>
-                    <span>暑假无聊，开始在<a href="https://www.w3school.com.cn/">W3C</a>学习Web，使用Microsoft Surface Pro
-                        4敲出了人生第一个Hello world.</span>
-                </li>
-            </ol>
-        </div>
 
         <!--PHP输出热门文章-->
         <div class="popular-articles yue float-up">
@@ -226,22 +182,7 @@ if (!Utils::isPjax()) {
         #countdown-box strong {
             font-size: 150%;
             font-weight: 600;
-        }
-
-        /* 博客大事记 */
-        #blog-event ol {
-            display: block;
-            border-left: 5px double #ccc;
-            list-style: none;
-            margin: unset;
-        }
-
-        #blog-event li {
-            border-bottom: 1px solid;
-        }
-
-        #blog-event li>span:first-child {
-            font-size: 80%;
+            margin: 0 10px
         }
 
         /* 热门文章排行 */
@@ -296,40 +237,27 @@ if (!Utils::isPjax()) {
     <!-- 自定义JS -->
     <script>
         // 博客运行时间
-        //获取元素
         var countdown_box = document.querySelector("#countdown-box");
         var day = countdown_box.querySelector(".day");
         var hour = countdown_box.querySelector(".hour");
         var minute = countdown_box.querySelector(".minute");
         var second = countdown_box.querySelector(".second");
-        //获取截止时间的时间戳（单位毫秒）
         var inputTime = +new Date("2017-07-02 16:54:00");
 
-        //我们先调用countDown函数，可以避免在打开界面后停一秒后才开始倒计时
         countDown();
-        //定时器 每隔一秒变化一次
         setInterval(countDown, 1000);
 
         function countDown() {
-            //获取当前时间的时间戳（单位毫秒）
             var nowTime = +new Date();
-            //把剩余时间毫秒数转化为秒
             var times = (nowTime - inputTime) / 1000;
             if (times > 0) {
-                //计算天 转化为整数
                 var d = parseInt(times / 60 / 60 / 24);
                 day.innerHTML = d < 10 ? "0" + d : d;
-                //计算小时数 转化为整数
                 var h = parseInt(times / 60 / 60 % 24);
-                //如果小时数小于 10，要变成 0 + 数字的形式 赋值给盒子
                 hour.innerHTML = h < 10 ? "0" + h : h;
-                //计算分钟数 转化为整数
                 var m = parseInt(times / 60 % 60);
-                //如果分钟数小于 10，要变成 0 + 数字的形式 赋值给盒子
                 minute.innerHTML = m < 10 ? "0" + m : m;
-                //计算描述 转化为整数
                 var s = parseInt(times % 60);
-                //如果秒钟数小于 10，要变成 0 + 数字的形式 赋值给盒子
                 second.innerHTML = s < 10 ? "0" + s : s;
             }
         }
