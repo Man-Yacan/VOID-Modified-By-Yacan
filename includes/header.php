@@ -116,7 +116,8 @@ if($this->is('post') || $this->is('page')) {
         </section>
         <?php endforeach;} ?>
     </div>
+    
     <!-- 引入灯笼文件 -->
     <?php 
-        // $this->need('includes/lantern.php'); 
+        $this->need('includes/lantern.php'); 
     ?>

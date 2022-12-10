@@ -75,26 +75,13 @@ if (!Utils::isPjax()) {
                 <span class="minute">00</span> <strong>:</strong>
                 <span class="second">00</span>
             </div>
-
-            <!-- 最后离开位置与时间 -->
-            <?php $this->widget('Widget_Comments_Recent', 'pageSize=1')->to($comments); ?>
-            <p>最后位置：</p>
-            <p style="text-align: center">
-                <i class="voidicon-location"></i>
-                <?php echo convertip($comments->ip); ?>
-            </p>
-            <p>最后来过：</p>
-            <p style="text-align: center">
-                <i class="voidicon-cw"></i>
-                <?php echo get_last_update(); ?>
-            </p>
         </div>
 
         <!--PHP输出热门文章-->
         <div class="popular-articles yue float-up">
             <h2>🗒️ 热门文章排行</h2>
             <ol>
-                <?php getHotComments('20'); ?>
+                <?php getHotComments(); ?>
             </ol>
         </div>
 
@@ -158,85 +145,8 @@ if (!Utils::isPjax()) {
     </div>
 
     <!-- 自定义代码必须放在PJax刷新区域 -->
-    <!-- 自定义css -->
-    <style>
-        /* 博客运行时间 */
-        #countdown-box {
-            width: fit-content;
-            margin: 10px auto;
-        }
-
-        #countdown-box>span {
-            /* 转化span模式，使span能设置宽高 */
-            display: inline-block;
-            width: 3em;
-            height: 3em;
-            background-color: #333;
-            color: #fff;
-            font-weight: 900;
-            /* 使方块中文字居中 */
-            text-align: center;
-            line-height: 3em;
-        }
-
-        #countdown-box strong {
-            font-size: 150%;
-            font-weight: 600;
-            margin: 0 10px
-        }
-
-        /* 热门文章排行 */
-        .popular-articles ol>li:first-child {
-            color: #FE2D46;
-        }
-
-        .popular-articles ol>li:nth-of-type(2) {
-            color: #F60;
-        }
-
-        .popular-articles ol>li:nth-of-type(3) {
-            color: #FAA90E;
-        }
-
-        .popular-articles ol>li.hot i::after {
-            content: '热';
-            color: #fafafa;
-            position: absolute;
-            background-color: #F60;
-            display: inline-block;
-            border-radius: 5px;
-            padding: 0 3px;
-            right: -1.7em;
-            transform: translateY(-50%);
-            top: 50%;
-            font-style: normal;
-            font-size: 80%;
-        }
-
-        .popular-articles ol>li.hot i {
-            position: relative;
-        }
-
-        /* 标签云 */
-        .tag-cloud>a {
-            border-radius: 5px;
-            padding: 1px 5px;
-            margin-right: 1px !important;
-        }
-
-        .tag-cloud>a::after {
-            content: '' !important;
-        }
-
-        /* 时光杀猪刀 */
-        #archive-list a::after {
-            content: '';
-        }
-    </style>
-
-    <!-- 自定义JS -->
     <script>
-        // 博客运行时间
+        //博客运行时间
         var countdown_box = document.querySelector("#countdown-box");
         var day = countdown_box.querySelector(".day");
         var hour = countdown_box.querySelector(".hour");

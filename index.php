@@ -47,12 +47,12 @@ if (!Utils::isPjax()) {
                     </div>
                 </div>
                 <div>
-                    <?php $comments->excerpt(30, '...'); ?>
+                    <?php $comments->excerpt(50, '...'); ?>
                 </div>
             </a>
         <?php endif; ?>
         <!-- 输出矫情 End -->
-        
+
         <section id="index-list" class="float-up">
             <ul id="masonry">
                 <?php while ($this->next()) : ?>
@@ -154,62 +154,6 @@ if (!Utils::isPjax()) {
         </section>
         <?php $this->pageNav('<span aria-label="上一页">←</span>', '<span aria-label="下一页">→</span>', 1, '...', 'wrapClass=pager&prevClass=prev&nextClass=next'); ?>
     </div>
-
-    <!-- 输出矫情页面最新评论 -->
-    <style>
-        #whisper {
-            transition: all .3s !important;
-            height: 5rem;
-            margin: 1.5em 0;
-            text-align: center;
-            border: 1px solid #444;
-            border-radius: 2px;
-            display: block;
-            overflow: hidden;
-        }
-
-        #whisper:hover {
-            cursor: pointer;
-            transform: translateY(-10px);
-            border: 1px solid #444;
-            box-shadow: 8px 8px 10px rgba(0, 0, 0, .25);
-        }
-
-        #whisper>div:first-child {
-            line-height: 1.8;
-            font-weight: normal;
-            background: rgba(0, 0, 0, .98);
-            color: #ccc;
-            width: 100%;
-            height: 40%;
-        }
-
-        #whisper>div:first-child>div {
-            width: 100%;
-            height: 100%;
-            position: relative;
-        }
-
-
-        #whisper>div:nth-child(2) {
-            line-height: 3em;
-        }
-
-        #whisper>div:first-child>div::before {
-            content: " ";
-            position: absolute;
-            border-radius: 50%;
-            background: #fc625d;
-            width: 12px;
-            height: 12px;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            -webkit-box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
-            box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
-            z-index: 1;
-        }
-    </style>
 </main>
 
 <?php
