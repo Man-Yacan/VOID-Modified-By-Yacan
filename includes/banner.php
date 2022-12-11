@@ -42,6 +42,7 @@ if ($this->is('post') || $this->is('page')) {
                 <div class="arrow"></div>
                 <div class="arrow"></div>
             </div>
+            
             <span id="img-info"></span>
             <style>
                 .lazy-wrap>#img-info {
