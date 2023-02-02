@@ -25,11 +25,13 @@ if (!Utils::isPjax()) {
         <?php Contents::title($this); ?>
     </title>
 
-    <?php
-    $this->need('includes/ldjson.php');
-    $this->need('includes/banner.php');
+    <?php 
+        $this->need('includes/ldjson.php');
+        $this->need('includes/banner.php');
     ?>
 
+    <!-- 那年今日 -->
+    
     <!-- 评论区 -->
     <?php
     if (!defined('__TYPECHO_ROOT_DIR__')) exit;
