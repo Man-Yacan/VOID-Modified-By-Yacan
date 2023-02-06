@@ -29,9 +29,21 @@ $this->widget('VOID_Widget_Comments_Archive', $parameter)->to($comments);
                 <?php $comments->cancelReply(); ?>
             </div>
             <h3 id="response" class="widget-title text-left">添加新评论</h3>
-            <?php if (!empty($setting['commentNotification'])) : ?>
-                <p class="comment-notification notice"><?php echo $setting['commentNotification']; ?></p>
-            <?php endif; ?>
+            <div id='diy-comment-notice-info'>
+                <img src="https://imgapi.cn/ip.php?diy=5pu85Lqa54G/55qE5Liq5Lq65Y2a5a6i">
+                <?php if (!empty($setting['commentNotification'])) : ?>
+                    <p class="comment-notification notice"><?php echo $setting['commentNotification']; ?></p>
+                <?php endif; ?>
+            </div>
+            <style>
+                #diy-comment-notice-info {
+                    display: flex;
+                }
+
+                #diy-comment-notice-info>img {
+                    margin: 16px 0;
+                }
+            </style>
             <form method="post" action="<?php $this->commentUrl() ?>" id="comment-form">
                 <?php if ($this->user->hasLogin()) : ?>
                     <p id="logged-in" data-name="<?php $this->user->screenName(); ?>" data-url="<?php $this->user->url(); ?>" data-email="<?php $this->user->mail(); ?>"><?php _e('登录身份: '); ?>
