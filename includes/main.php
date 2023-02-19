@@ -26,6 +26,9 @@ $setting = $GLOBALS['VOIDSetting'];
             <section id="post" class="float-up">
                 <article class="post yue">
 
+                    <!-- 文章最前面显示文章摘要 -->
+                    <p <?php if ($this->fields->excerpt == '' || !$setting['showHeadlineInPost']) echo 'hidden' ?> class="headline" itemprop="headline"><?php if ($this->fields->excerpt != '') echo $this->fields->excerpt;
+                                                                                                                                                    else $this->excerpt(30); ?></p>
                     <?php $postCheck = Utils::isOutdated($this);
                     if ($postCheck["is"] && $this->is('post')) : ?>
                         <p class="notice">请注意，本文编写于 <?php echo $postCheck["created"]; ?> 天前，最后修改于 <?php echo $postCheck["updated"]; ?> 天前，其中某些信息可能已经过时。</p>
@@ -182,7 +185,8 @@ $setting = $GLOBALS['VOIDSetting'];
         <?php endif; ?>
     </div>
 
-    <!--评论区，可选（只有当允许评论的时候才输出评论区）-->
+    <!--评论区，可选-->
+    <!-- 只有当允许评论的时候才输出评论区 -->
     <?php if ($this->allow('comment')) : ?>
         <?php $this->need('includes/comments.php'); ?>
     <?php endif; ?>
