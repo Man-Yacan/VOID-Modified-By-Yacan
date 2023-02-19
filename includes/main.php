@@ -28,7 +28,7 @@ $setting = $GLOBALS['VOIDSetting'];
 
                     <!-- 文章最前面显示文章摘要 -->
                     <p <?php if ($this->fields->excerpt == '' || !$setting['showHeadlineInPost']) echo 'hidden' ?> class="headline" itemprop="headline"><?php if ($this->fields->excerpt != '') echo $this->fields->excerpt;
-                                                                                                                                                    else $this->excerpt(30); ?></p>
+                                                                                                                                                        else $this->excerpt(30); ?></p>
                     <?php $postCheck = Utils::isOutdated($this);
                     if ($postCheck["is"] && $this->is('post')) : ?>
                         <p class="notice">请注意，本文编写于 <?php echo $postCheck["created"]; ?> 天前，最后修改于 <?php echo $postCheck["updated"]; ?> 天前，其中某些信息可能已经过时。</p>
@@ -42,7 +42,7 @@ $setting = $GLOBALS['VOIDSetting'];
                         <!--输出文章版权-->
                         <div style="margin: 20px auto;width: fit-content;">----- <span style="color: white;background-color: black;padding: 0 5px;font-size: .7rem;">END</span> -----</div>
                         <p class="notice" style="text-indent:0em">
-                            本文作者：<a href="<?php $this->author->permalink(); ?>" rel="author"> <?php $this->author(); ?></a><br>
+                            博客站点：<a href="<?php $this->author->permalink(); ?>" rel="author"><span class="brand">亚灿网志（Yacan's Blog）</span></a><br>
                             本文链接：<a href="<?php $this->permalink(); ?>"><?php $this->permalink(); ?></a><br>
                             版权声明：本文章采用<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><i>&nbsp;<strong>知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议&nbsp;</strong></i></a>。
                         </p>
@@ -102,25 +102,18 @@ $setting = $GLOBALS['VOIDSetting'];
                         $('.copyDiv').click(function() {
                             copyHandle($(this).next().text());
                         })
+
+                        // 任务列表清单
+                        $("ul li").each(function(index, ele) {
+                            let cur_str = $(this).text()
+                            if (cur_str.startsWith('[x]')) {
+                                $(this).addClass('task-list-item').empty().prepend('<input type="checkbox" checked>').append('<span class="task-list-done">' + cur_str.slice(3) + '</span>')
+                            } else if (cur_str.startsWith('[ ]')) {
+                                $(this).addClass('task-list-item').empty().prepend('<input type="checkbox">').append('<span>' + cur_str.slice(3) + '</span>')
+                            }
+                        })
                     })
                 </script>
-
-                <!-- 一键复制按钮样式 -->
-                <style>
-                    .copyDiv {
-                        position: absolute;
-                        top: 6px;
-                        right: 10px;
-                        color: white;
-                        z-index: 100;
-                        border: 1px solid #05F56B;
-                        text-align: center;
-                        cursor: pointer;
-                        background-color: #85C1E9;
-                        border-radius: 3px;
-                        line-height: 18px
-                    }
-                </style>
 
                 <!--分页-->
                 <?php if (!$this->is('page')) : ?>

@@ -1,4 +1,63 @@
 <style>
+    .articleBody .task-list-item {
+        position: relative;
+        list-style-type: none;
+        padding-left: 24px;
+    }
+
+    .articleBody .task-list-item>input {
+        appearance: initial;
+        display: block;
+        position: absolute;
+        border: 1.5px solid #bfbcbc;
+        border-radius: 0.2rem;
+        height: 1.1rem;
+        width: 1.1rem;
+        top: 50%;
+        transform: translateY(-50%);
+        left: 3px;
+        padding: 0 !important;
+        box-shadow: 0px 0px 5px 0px rgb(0 0 0 / 10%);
+        transition: all .3s ease;
+    }
+
+    /* 鼠标悬浮在任务列表框框样式 */
+    .articleBody .task-list-item>input:hover {
+        background-color: rgb(129, 178, 154, 0.2) !important;
+    }
+
+    /* 任务列表打钩 */
+    .articleBody .task-list-item>input[checked]::before {
+        content: "✔️";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-weight: bold;
+        font-size: .9rem;
+        color: #eb6240;
+        font-family: 'iconfont';
+    }
+
+    .task-list-done {
+        text-decoration: line-through;
+        color: #aaa;
+    }
+
+    .copyDiv {
+        position: absolute;
+        top: 6px;
+        right: 10px;
+        color: white;
+        z-index: 100;
+        border: 1px solid#05F56B;
+        text-align: center;
+        cursor: pointer;
+        background-color: #85C1E9;
+        border-radius: 3px;
+        line-height: 18px
+    }
+
     video {
         width: 100%
     }
@@ -691,10 +750,6 @@
         width: max-content
     }
 
-    a[title='站长统计'] {
-        display: none
-    }
-
     footer a:hover {
         border-bottom: 1px solid #ccc
     }
@@ -702,10 +757,6 @@
     #comments form #textarea,
     #comments form .comment-info-input input {
         border-radius: 0
-    }
-
-    #cnzz_stat_icon_1276108172 {
-        display: none
     }
 
     article img.biaoqing {
@@ -865,10 +916,6 @@
 
     section#archive-list section.year ul li a {
         white-space: normal !important
-    }
-
-    .TOC {
-        background: rgba(0, 0, 0, .7)
     }
 
     nav>a:nth-child(2):hover {
