@@ -1,4 +1,8 @@
 <style>
+    video {
+        width: 100%
+    }
+
     #diy-comment-notice-info {
         display: flex;
     }
@@ -431,10 +435,6 @@
     }
 
     @media screen and (max-width:767px) {
-        #diy-comment-notice-info {
-            flex-direction: column;
-        }
-
         .lazy-wrap>#down-button {
             display: unset;
         }
@@ -1024,3 +1024,8 @@
         vertical-align: bottom
     }
 </style>
+
+
+<script>
+    loadMeting(); if (typeof aplayers !== 'undefined') { for (var i = 0; i < aplayers.length; i++) { try { aplayers[i].destroy() } catch (e) { } } }
+</script>
