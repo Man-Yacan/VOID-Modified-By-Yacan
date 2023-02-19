@@ -1,4 +1,139 @@
 <style>
+    /* 折叠标签 */
+    summary {
+        display: list-item;
+    }
+
+    details summary {
+        cursor: pointer;
+        padding: 10px;
+        color: #135699;
+        font-size: 0.9rem !important;
+        font-weight: bolder;
+        position: relative;
+        border: 3px solid #81b29a;
+    }
+
+    details[open]>summary {
+        margin: 0 -10px;
+        border: unset;
+    }
+
+    details>summary {
+        background: #ebf9ed;
+        color: #428bca;
+    }
+
+    /* 折叠块打开 */
+    details[open] {
+        border: 3px solid #81b29a;
+        padding: 0 10px;
+    }
+
+    summary::marker {
+        color: #e07a5f;
+    }
+
+    /* 折叠框点击时,会出现黑色边框，极不美观，去除 */
+    summary:focus {
+        outline: none !important;
+    }
+
+    /*引用基础设置*/
+    blockquote:has(h3, h4, h5, h6) {
+        border-left: 0.25em solid #8496b0 !important;
+        padding: 10px 10px !important;
+        color: #999 !important;
+        background-color: #e3ebf0 !important;
+        font-size: 17px;
+        margin: 10px 0 !important;
+    }
+
+    blockquote>h3:first-child,
+    blockquote>h4:first-child,
+    blockquote>h5:first-child,
+    blockquote>h6:first-child {
+        font-size: 1.1rem;
+        margin: -10px -16px -5px -16px !important;
+        padding: 12px 12px 0px !important;
+        display: flex;
+        align-items: center;
+        letter-spacing: 1px;
+        font-weight: 600;
+    }
+
+    /* Warning / 注意 */
+    blockquote>h3:first-child {
+        color: #c00000 !important;
+    }
+
+    blockquote>h3:first-child::before,
+    blockquote>h3.md-focus::before {
+        content: "\f0c3";
+        font-family: "void-icon";
+        font-size: 1.05rem !important;
+        color: #c00000 !important;
+        position: relative;
+        top: 0px;
+        left: 3px;
+        margin-right: 10px;
+        padding: 0;
+    }
+
+    /* Quote / 参考 */
+    blockquote>h4:first-child {
+        color: #3b83c1 !important;
+    }
+
+    blockquote>h4:first-child::before,
+    blockquote>h4.md-focus::before {
+        content: "\e812";
+        font-family: "void-icon";
+        font-size: 1.25rem !important;
+        color: #3b83c1 !important;
+        position: relative;
+        top: 0px;
+        left: 2px;
+        margin-right: 10px;
+        padding: 0;
+    }
+
+    /* Tips / 提示 */
+    blockquote>h5:first-child {
+        color: #ffae00 !important;
+    }
+
+    blockquote>h5:first-child::before,
+    blockquote>h5.md-focus::before {
+        content: "\e800";
+        font-family: "void-icon";
+        font-size: 1.25rem;
+        color: #ffae00 !important;
+        position: relative;
+        top: 0px;
+        left: 2px;
+        margin-right: 10px;
+        padding: 0;
+    }
+
+    /* Expand / 拓展 */
+    blockquote>h6:first-child {
+        color: #3abd7e !important;
+    }
+
+    blockquote>h6:first-child::before,
+    blockquote>h6.md-focus::before {
+        content: "\e805";
+        font-family: "void-icon";
+        font-size: 1.25rem;
+        color: #3abd7e !important;
+        position: relative;
+        top: 0px;
+        left: 1px;
+        margin-right: 10px;
+        padding: 0;
+    }
+
     .articleBody .task-list-item {
         position: relative;
         list-style-type: none;
@@ -21,12 +156,10 @@
         transition: all .3s ease;
     }
 
-    /* 鼠标悬浮在任务列表框框样式 */
     .articleBody .task-list-item>input:hover {
         background-color: rgb(129, 178, 154, 0.2) !important;
     }
 
-    /* 任务列表打钩 */
     .articleBody .task-list-item>input[checked]::before {
         content: "✔️";
         position: absolute;
@@ -77,7 +210,7 @@
         border: unset;
     }
 
-    .yue blockquote::before {
+    .yue blockquote:not(:has(h3, h4, h5, h6))::before {
         font-size: 4rem;
         position: absolute;
         top: -10px;
@@ -87,7 +220,7 @@
         content: "“" !important;
     }
 
-    .yue blockquote::after {
+    .yue blockquote:not(:has(h3, h4, h5, h6))::after {
         font-size: 4rem;
         position: absolute;
         bottom: -37px;
@@ -98,7 +231,7 @@
     }
 
     body.theme-dark .yue blockquote {
-        background: rgba(0, 0, 0, .86);
+        background: rgba(0, 0, 0, .86) !important;
     }
 
     body.theme-dark .board-list.link-list .board-title {
@@ -1071,8 +1204,3 @@
         vertical-align: bottom
     }
 </style>
-
-
-<script>
-    loadMeting(); if (typeof aplayers !== 'undefined') { for (var i = 0; i < aplayers.length; i++) { try { aplayers[i].destroy() } catch (e) { } } }
-</script>

@@ -107,9 +107,9 @@ $setting = $GLOBALS['VOIDSetting'];
                         $("ul li").each(function(index, ele) {
                             let cur_str = $(this).text()
                             if (cur_str.startsWith('[x]')) {
-                                $(this).addClass('task-list-item').empty().prepend('<input type="checkbox" checked>').append('<span class="task-list-done">' + cur_str.slice(3) + '</span>')
+                                $(this).addClass('task-list-item').empty().prepend('<input type="checkbox" checked />').append('<span class="task-list-done">' + cur_str.slice(3) + '</span>')
                             } else if (cur_str.startsWith('[ ]')) {
-                                $(this).addClass('task-list-item').empty().prepend('<input type="checkbox">').append('<span>' + cur_str.slice(3) + '</span>')
+                                $(this).addClass('task-list-item').empty().prepend('<input type="checkbox" />').append('<span>' + cur_str.slice(3) + '</span>')
                             }
                         })
                     })
