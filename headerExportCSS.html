@@ -1,4 +1,24 @@
 <style>
+    /* 有序列表与无序列表 */
+    .articleBody ol ol {
+        list-style-type: upper-alpha;
+    }
+
+    .articleBody ol ol ol {
+        list-style-type: lower-alpha;
+    }
+
+    .articleBody ol ol,
+    .articleBody ol ol ol {
+        border-left: 1px solid red;
+        padding-left: 25px;
+    }
+
+    .articleBody ol li::marker,
+    .articleBody ul li::marker {
+        color: #e07a5f;
+    }
+
     /* 折叠标签 */
     summary {
         display: list-item;

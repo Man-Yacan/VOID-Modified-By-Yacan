@@ -102,42 +102,76 @@ if (!Utils::isPjax()) {
         </div>
         <section id="archive-list" class="yue float-up">
             <h2>⏲️ 时光真是一把杀猪刀~</h2>
+            <style>
+                /* 按年份归档的样式 */
+                .archives-year {
+                    margin-top: 30px;
+                    padding: 12px;
+                    box-sizing: border-box;
+                    border: 1px solid rgb(17 24 39/.1);
+                }
+
+                .archives-year-head {
+                    display: flex;
+                    align-items: center;
+                    cursor: pointer;
+                }
+
+                .archives-year-head h3 {
+                    margin: unset;
+                    margin-right: auto;
+                }
+
+                .archives-year-head .toggle-archive {
+                    height: fit-content;
+                }
+
+                body.theme-dark .archives-year {
+                    border: 1px solid #ccc;
+                }
+            </style>
             <?php $archives = Contents::archives($this);
             $index = 0;
             foreach ($archives as $year => $posts) : ?>
-                <h3>
-                    <?php echo $year; ?>
-                    <span class="num-posts">
-                        <?php $post_num = count($posts);
-                        echo $post_num; ?> 篇
-                    </span>
-                    <a no-pjax target="_self" data-num="<?php echo $post_num; ?>" data-year="<?php echo $year; ?>" class="toggle-archive" href="javascript:void(0);" onclick="VOID_Ui.toggleArchive(this); return false;">
-                        <?php if ($index > 0)
-                            echo '+';
-                        else
-                            echo '-'; ?>
-                    </a>
-                </h3>
-                <section id="year-<?php echo $year; ?>" class="year<?php if ($index > 0)
-                                                                        echo ' shrink'; ?>" style="max-height: <?php if ($index > 0)
-                                                                                                                    echo '0';
-                                                                                                                else
-                                                                                                                    echo $post_num * 49; ?>px; transition-duration: <?php echo $post_num * 0.03 > 0.8 ? 0.8 : $post_num * 0.03; ?>s">
-                    <ul>
-                        <?php foreach ($posts as $created => $post) : ?>
-                            <li>
-                                <a class="archive-title<?php if ($setting['VOIDPlugin'])
-                                                            echo ' show-word-count'; ?>" data-words="<?php if ($setting['VOIDPlugin'])
-                                                                                                            echo $post['words']; ?>" href="<?php echo $post['permalink']; ?>">
-                                    <span class="date">
-                                        <?php echo date('m-d', $created); ?>
-                                    </span>
-                                    <?php echo $post['title']; ?>
-                                </a>
-                            </li>
-                        <?php endforeach; ?>
-                    </ul>
-                </section>
+                <div class="archives-year">
+                    <div class="archives-year-head">
+                        <h3>
+                            <?php echo $year; ?>
+                            <span class="num-posts">
+                                <i class="voidicon-pin"></i>
+                                <?php $post_num = count($posts);
+                                echo $post_num; ?> 篇
+                            </span>
+                        </h3>
+
+                        <a no-pjax target="_self" data-num="<?php echo $post_num; ?>" data-year="<?php echo $year; ?>" class="toggle-archive" href="javascript:void(0);">
+                            <?php if ($index > 0)
+                                echo '+';
+                            else
+                                echo '-'; ?>
+                        </a>
+                    </div>
+                    <section id="year-<?php echo $year; ?>" class="year<?php if ($index > 0)
+                                                                            echo ' shrink'; ?>" style="max-height: <?php if ($index > 0)
+                                                                                                                        echo '0';
+                                                                                                                    else
+                                                                                                                        echo $post_num * 49; ?>px; transition-duration: <?php echo $post_num * 0.03 > 0.8 ? 0.8 : $post_num * 0.03; ?>s">
+                        <ul>
+                            <?php foreach ($posts as $created => $post) : ?>
+                                <li>
+                                    <a class="archive-title<?php if ($setting['VOIDPlugin'])
+                                                                echo ' show-word-count'; ?>" data-words="<?php if ($setting['VOIDPlugin'])
+                                                                                                                echo $post['words']; ?>" href="<?php echo $post['permalink']; ?>">
+                                        <span class="date">
+                                            <?php echo date('m-d', $created); ?>
+                                        </span>
+                                        <?php echo $post['title']; ?>
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </section>
+                </div>
             <?php $index = $index + 1;
             endforeach; ?>
         </section>
@@ -145,6 +179,15 @@ if (!Utils::isPjax()) {
 
     <!-- 自定义代码必须放在PJax刷新区域 -->
     <script>
+        // 按年份归档的按钮点击事件
+        $('.toggle-archive').bind("click", function() {
+            VOID_Ui.toggleArchive(this);
+            return false;
+        })
+        $('.archives-year-head').click(function(index, ele) {
+            $(this).find('.toggle-archive').trigger("click")
+        })
+
         //博客运行时间
         var countdown_box = document.querySelector("#countdown-box");
         var day = countdown_box.querySelector(".day");
