@@ -1,5 +1,4 @@
 <style>
-    /* 有序列表与无序列表 */
     .articleBody ol ol {
         list-style-type: upper-alpha;
     }
@@ -9,6 +8,7 @@
     }
 
     .articleBody ol ol,
+    .articleBody ol ul,
     .articleBody ol ol ol {
         border-left: 1px solid red;
         padding-left: 25px;
@@ -19,19 +19,17 @@
         color: #e07a5f;
     }
 
-    /* 折叠标签 */
-    summary {
-        display: list-item;
+    details {
+        border: 3px solid #428bca;
+        transition: all .5s ease;
     }
 
     details summary {
-        cursor: pointer;
         padding: 10px;
         color: #135699;
         font-size: 0.9rem !important;
         font-weight: bolder;
         position: relative;
-        border: 3px solid #81b29a;
     }
 
     details[open]>summary {
@@ -44,7 +42,6 @@
         color: #428bca;
     }
 
-    /* 折叠块打开 */
     details[open] {
         border: 3px solid #81b29a;
         padding: 0 10px;
@@ -54,12 +51,10 @@
         color: #e07a5f;
     }
 
-    /* 折叠框点击时,会出现黑色边框，极不美观，去除 */
     summary:focus {
         outline: none !important;
     }
 
-    /*引用基础设置*/
     blockquote:has(h3, h4, h5, h6) {
         border-left: 0.25em solid #8496b0 !important;
         padding: 10px 10px !important;
@@ -82,7 +77,6 @@
         font-weight: 600;
     }
 
-    /* Warning / 注意 */
     blockquote>h3:first-child {
         color: #c00000 !important;
     }
@@ -100,7 +94,6 @@
         padding: 0;
     }
 
-    /* Quote / 参考 */
     blockquote>h4:first-child {
         color: #3b83c1 !important;
     }
@@ -118,7 +111,6 @@
         padding: 0;
     }
 
-    /* Tips / 提示 */
     blockquote>h5:first-child {
         color: #ffae00 !important;
     }
@@ -136,7 +128,6 @@
         padding: 0;
     }
 
-    /* Expand / 拓展 */
     blockquote>h6:first-child {
         color: #3abd7e !important;
     }
@@ -223,17 +214,17 @@
         margin: 16px 0;
     }
 
-    .yue blockquote {
+    .yue blockquote:not(:has(h3, h4, h5, h6)) {
         background: #F9F9F9;
         position: relative;
-        padding: 30px 60px;
+        padding: 5px 60px;
         border: unset;
     }
 
     .yue blockquote:not(:has(h3, h4, h5, h6))::before {
         font-size: 4rem;
         position: absolute;
-        top: -10px;
+        top: -25px;
         left: 18px;
         color: rgb(211, 222, 234);
         font-family: times;
@@ -243,7 +234,7 @@
     .yue blockquote:not(:has(h3, h4, h5, h6))::after {
         font-size: 4rem;
         position: absolute;
-        bottom: -37px;
+        bottom: -50px;
         right: 23px;
         color: rgb(211, 222, 234);
         font-family: times;
@@ -606,9 +597,7 @@
     }
 
     .tag-cloud>a {
-        border-radius: 5px;
-        padding: 1px 5px;
-        margin-right: 1px !important;
+        padding: 1px 5px
     }
 
     .tag-cloud>a::after {
@@ -820,10 +809,6 @@
         left: 12px;
         width: auto;
         top: -60px;
-    }
-
-    .yue blockquote {
-        border-left-color: #d35400;
     }
 
     #post article p.notice:first-child {
