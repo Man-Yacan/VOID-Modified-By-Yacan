@@ -61,7 +61,9 @@ if (!Utils::isPjax()) {
                     </p>
                     <p class="comment-buttons">
                         <span class="OwO" aria-label="表情按钮" role="button"></span>
-                        <button id="comment-submit-button" type="submit" class="submit btn btn-normal">提交评论(Ctrl+Enter)</button>
+                        <button id="comment-submit-button" type="submit" class="submit btn btn-normal">
+                            提交评论(Ctrl+Enter)
+                        </button>
                     </p>
                 </form>
             </div>
@@ -87,9 +89,53 @@ if (!Utils::isPjax()) {
             <?php endif; ?>
 
             <style>
+                /* ----------------------------------------------- 自定义Emo页面评论列表 Start ----------------------------------------------- */
                 .user-logo.webmaster {
                     display: none
                 }
+
+                .comment-list-diy:has(+ .pager) {
+                    border: 1px solid #ccc;
+                }
+
+                .comment-list-diy:has(+ .pager) img.biaoqing {
+                    display: inline-block;
+                    height: 2em;
+                    vertical-align: bottom;
+                    margin: 0;
+                    -webkit-box-shadow: none;
+                    box-shadow: none;
+                }
+
+                /* 嵌套评论 */
+                .comment-children:has(.comment-list-diy) {
+                    padding-left: 20px;
+                }
+
+                /* ----------------------------------------------- 自定义Emo页面评论列表 Start ----------------------------------------------- */
+
+
+                /* ----------------------------------------------- 评论按钮 Start ----------------------------------------------- */
+                button#comment-submit-button {
+                    position: absolute !important;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                }
+
+                button#comment-submit-button:hover {
+                    background-image: linear-gradient(to right, rgb(250, 82, 82), rgb(250, 82, 82) 16.65%, rgb(190, 75, 219) 16.65%, rgb(190, 75, 219) 33.3%, rgb(76, 110, 245) 33.3%, rgb(76, 110, 245) 49.95%, rgb(64, 192, 87) 49.95%, rgb(64, 192, 87) 66.6%, rgb(250, 176, 5) 66.6%, rgb(250, 176, 5) 83.25%, rgb(253, 126, 20) 83.25%, rgb(253, 126, 20) 100%, rgb(250, 82, 82) 100%) !important;
+                    animation: 2s linear dance6123 infinite;
+                    transform: scale(1.1) translate(-50%, -50%);
+                }
+
+                @keyframes dance6123 {
+                    to {
+                        background-position: 150px;
+                    }
+                }
+
+                /* ----------------------------------------------- 评论按钮 End ----------------------------------------------- */
             </style>
 
             <!--历史评论-->
